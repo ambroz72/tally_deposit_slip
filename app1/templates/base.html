@@ -570,7 +570,7 @@
                             <div class="menu-title">Vouchers</div>
                         </a>
                         <ul>
-                            <li><a href="list_payment_voucher"><i class="bx bx-right-arrow-alt"></i>Payment</a>
+                            <li><a href=" list_payment_voucher"><i class="bx bx-right-arrow-alt"></i>Payment</a>
                              
                             </li>
                             
@@ -582,8 +582,11 @@
                                 
                             </li>
                             <li><a href="{% url 'list_deb_voucher'%}"><i class="bx bx-right-arrow-alt"></i>Debit Note</a>
-                                
                             </li>
+                        </li>
+                        <li><a href="{% url 'list_contra_voucher' %}"><i class="bx bx-right-arrow-alt"></i>Contra</a>
+                    
+                        </li>
                             
                         </ul>
 
@@ -594,17 +597,13 @@
 
                             <div class="parent-icon"><i class='bx bx-clipboard'></i>
                             </div>
-                            <div class="menu-title">Reports</div>
+                            <div class="menu-title">Banking</div>
                         </a>
                         <ul>
-                            <li><a href="stock_summary"><i class="bx bx-right-arrow-alt"></i>Stock Summary</a>
+                            <li><a href="{% url 'deposit_slip' %}"><i class="bx bx-right-arrow-alt"></i>Deposit slips</a>
                              
                             </li>
-                          
                         </ul>
-
-                    </li>
-                      
                       
                         <li>
                            

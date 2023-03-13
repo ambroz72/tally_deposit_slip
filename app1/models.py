@@ -1782,13 +1782,16 @@ class receipt_particulars(models.Model):
     amount =  models.IntegerField(null= True)
 
 
+
 class bank_transcations(models.Model):
-
-
+    
+    voucher = models.ForeignKey(Voucher,on_delete=models.CASCADE,null=True,blank=True)
     pay_voucher = models.IntegerField(null=True,blank=True)
     rec_voucher = models.IntegerField(null=True,blank=True)
+    con_voucher = models.IntegerField(null=True,blank=True)
     pay_particular = models.IntegerField(null=True,blank=True)
     rec_particular = models.IntegerField(null=True,blank=True)
+    con_particular = models.IntegerField(null=True,blank=True)
     bank_account = models.CharField(max_length=255,null=True,blank=True)
     transcation_type = models.CharField(max_length=255,null=True,blank=True)
     instno = models.IntegerField(null=True,blank=True)
@@ -1797,6 +1800,20 @@ class bank_transcations(models.Model):
     acnum = models.CharField(max_length=255,null=True,blank=True)
     ifscode = models.CharField(max_length=255,null=True,blank=True)
     bank_name = models.CharField(max_length=255,null=True,blank=True)
+
+# class bank_transcations(models.Model):
+#     pay_voucher = models.IntegerField(null=True,blank=True)
+#     rec_voucher = models.IntegerField(null=True,blank=True)
+#     pay_particular = models.IntegerField(null=True,blank=True)
+#     rec_particular = models.IntegerField(null=True,blank=True)
+#     bank_account = models.CharField(max_length=255,null=True,blank=True)
+#     transcation_type = models.CharField(max_length=255,null=True,blank=True)
+#     instno = models.IntegerField(null=True,blank=True)
+#     instdate = models.DateField(null= True,blank=True)
+#     amount = models.IntegerField(null=True,blank=True)
+#     acnum = models.CharField(max_length=255,null=True,blank=True)
+#     ifscode = models.CharField(max_length=255,null=True,blank=True)
+#     bank_name = models.CharField(max_length=255,null=True,blank=True)
 
 
 #---------------------stock summary------------------
@@ -1854,6 +1871,8 @@ class stock_item_voucher(models.Model):
 #saiju
 
 class credit_note(models.Model):
+    voucher = models.ForeignKey(Voucher,on_delete=models.CASCADE,null=True,blank=True)
+
     screditid = models.AutoField(('cnid'), primary_key=True)
     comp=models.ForeignKey(Companies,on_delete=models.CASCADE)
     credit_no = models.IntegerField(default=1)
@@ -1886,13 +1905,13 @@ class credit_note(models.Model):
 class credit_item(models.Model):
     scredit = models.ForeignKey(credit_note, on_delete=models.CASCADE,null=True)
     items = models.CharField(max_length=100,null=True)
-    
     quantity = models.IntegerField(null=True)
     price = models.CharField(max_length=100,null=True)
- 
     total = models.CharField(max_length=100,null=True)
 
 class debit_note(models.Model):
+
+    voucher = models.ForeignKey(Voucher,on_delete=models.CASCADE,null=True,blank=True)
     sdebitid = models.AutoField(('cnid'), primary_key=True)
     comp=models.ForeignKey(Companies,on_delete=models.CASCADE)
     debit_no = models.IntegerField(default=1)
@@ -1925,11 +1944,19 @@ class debit_note(models.Model):
 class debit_item(models.Model):
     sdebit = models.ForeignKey(debit_note, on_delete=models.CASCADE,null=True)
     items = models.CharField(max_length=100,null=True)
-    
     quantity = models.IntegerField(null=True)
     price = models.CharField(max_length=100,null=True)
- 
     total = models.CharField(max_length=100,null=True)
+    
+    
+    
+class contra_voucher(models.Model):
+    voucher = models.ForeignKey(Voucher,on_delete=models.CASCADE,null=True,blank=True)
+    cid = models.IntegerField(null=True)
+    account = models.CharField(max_length= 255, null=True)
+    date = models.DateField(blank = True,null= True)
+    amount = models.IntegerField(null= True)
+    narration = models.CharField(max_length=255,null=True)    
 
 
 
